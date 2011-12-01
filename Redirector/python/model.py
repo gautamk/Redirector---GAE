@@ -7,7 +7,6 @@ class UniqueConstraintViolation(Exception):
 class RedirectRoutes(db.Model):
     author = db.UserProperty(auto_current_user_add = True , required = False)
     target_url = db.LinkProperty(required = True)
-    #tartget_key = db.StringProperty(required = True)
     added_at = db.DateTimeProperty(auto_now_add = True)
     modified_at = db.DateTimeProperty(auto_now = True)
 

@@ -1,9 +1,23 @@
-application: ab2pdox
+application: g-redirector
 version: 1
 runtime: python27
 api_version: 1
 threadsafe: true
 
+default_expiration: "99d 23h"
+
 handlers:
-- url: .*
+- url: /static
+  static_dir: static
+  
+- url: .*/
   script: main.application
+  secure: always
+  login: admin
+  
+- url: .*/*
+  script: main.application
+
+builtins:
+- datastore_admin: on
+

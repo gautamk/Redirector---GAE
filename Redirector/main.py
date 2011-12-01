@@ -16,8 +16,14 @@
 #
 import webapp2
 from google.appengine.ext.webapp import util
-from python.controller import *
+from python import view  , controller
 
 
+# Refer http://en.wikipedia.org/wiki/Regular_expression#POSIX_Extended_Regular_Expressions
+# for Regex Syntax
+application = webapp2.WSGIApplication([
+                                        (r'/',view.IndexHandler),
 
-application = webapp2.WSGIApplication([('/', IndexHandler)],debug=True)
+                                        (r'/([a-z A-Z 0-9 \. \_ \-]+)', controller.RedirectHandler),
+                                        ]
+                                        ,debug=True)

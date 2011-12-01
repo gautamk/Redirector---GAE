@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>Redirector</title>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">Redirector</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#list">List</a></li>
+            <li><a href="#">{{ current_user }}</a></li>
+            <li><a href="{{ logout_url }}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Redirect The World</h1>
+        <form action="" method="post" class="form-stacked">
+            <p>
+              <input name="target_url" id="target_url" type="text" placeholder="Target Url"  class="xxlarge" />
+              <h3>To</h3>
+              <div class="input-prepend">
+                <span class="add-on">{{ self.request.uri }}</span>
+                <input name="target_key" id="target_key" type="text" placeholder="The Redirect Key" class='medium' />
+              </div>
+            </p>
+            <div class=""><input type="submit" class="btn primary" value="Save"></div>
+        </form>
+      </div>
+
+
+      <footer>
+        <p>&copy; Company 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <link href="/static/css/bootstrap/bootstrap.less" rel="stylesheet/less">
+
+    <script src="/static/js/jquery-1.7.1.min.js"</script>
+    <script src="/static/js/jquery-ui.min.js"</script>
+    <script src="/static/js/less-1.1.5.min.js" ></script>
+
+  </body>
+</html>
