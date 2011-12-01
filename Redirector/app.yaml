@@ -14,6 +14,11 @@ handlers:
   script: main.application
   secure: always
   login: admin
+
+- url: /delete
+  script: main.application
+  secure: always
+  login: admin
   
 - url: .*/*
   script: main.application

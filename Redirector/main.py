@@ -23,7 +23,7 @@ from python import view  , controller
 # for Regex Syntax
 application = webapp2.WSGIApplication([
                                         (r'/',view.IndexHandler),
-
+                                        (r'/delete',controller.DeleteHandler),
                                         (r'/([a-z A-Z 0-9 \. \_ \-]+)', controller.RedirectHandler),
                                         ]
                                         ,debug=True)
