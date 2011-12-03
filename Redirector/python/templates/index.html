@@ -44,46 +44,51 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>Redirect The World</h1>
-        <form action="" method="post" class="form-stacked">
+        <form action="" name="somefrom" method="post" class=" form-add-redirector form-stacked">
             <p>
-              <input name="target_url" id="target_url" type="text" placeholder="Target Url"  class="xxlarge" />
-              <h3>To</h3>
               <div class="input-prepend">
                 <span class="add-on">{{ self.request.uri }}</span>
                 <input name="target_key" id="target_key" type="text" placeholder="The Redirect Key" class='medium' />
               </div>
+              <h1>&Darr;</h1>
+              <input name="target_url" id="target_url" type="text" placeholder="Target Url"  class="xxlarge" />
             </p>
-            <div class=""><input type="submit" class="btn primary" value="Save"></div>
+            <div class="">
+              <input type="submit" class="  btn large success" value="Save">
+              <input type="reset" class="btn pull-right small danger" value="Clear">
+            </div>
         </form>
       </div>
 
 
       <footer>
-        <p>&copy; Company 2011</p>
+        <p>&copy; <a href="http://j.mp/ab2pdox">Ab2pdox {% now "Y" %} </a></p>
       </footer>
 
     </div> <!-- /container -->
 
     <div id="redirect-list" class="modal hide fade out" style="display: block; ">
             <div class="modal-header">
-              <a href="#" class="close">×</a>
+              <a href="#" class="close">Close X</a>
               <h3>Your Redirectors</h3>
             </div>
             <div class="modal-body">
               {% if redirectors == ""  %}
               You have no Redirectors , try creating one
               {% else %}
-              <table class="zebra-striped">
+              <table id="redirector-list-table" class="zebra-striped">
+                <thead>
                 <tr>
                   <th>Key</th>
                   <th>Target</th>
                   <th>Delete ?</th>
                 </tr>
+                </thead>
                 {% for r in redirectors %}
-                <tr>
+                <tr title="Added at : {{ r.added_at }}">
 
-                  <td><a href="/{{ r.key.name }}" target="_blank">{{ r.key.name }}</a> </td>
-                  <td><a href="{{ r.target_url }}" target="_blank">{{ r.target_url }}</a> </td>
+                  <td class="crop" ><a href="/{{ r.key.name }}" target="_blank">{{ r.key.name }}</a> </td>
+                  <td class="crop"><a title="{{ r.target_url }}" href="{{ r.target_url }}" target="_blank">{{ r.target_url|slice:":35" }}</a> </td>
                   <td>
                   <form action="/delete" method="post" class='delete-redirect'>
                     <input type="hidden" name="key" value="{{ r.key }}">
@@ -100,14 +105,22 @@
 
       </div>
     <link href="/static/css/bootstrap/bootstrap.less" rel="stylesheet/less">
+    <style>
+      #redirector-list-table {
+        max-width:530px;
 
+      }
+      .crop {width:100px;overflow:hidden; }​
+
+    </style>
     <script src="/static/js/jquery-1.7.1.min.js"</script>
     <script src="/static/js/jquery-ui.min.js"</script>
     <script src="/static/js/less-1.1.5.min.js" ></script>
     <script src="/static/js/bootstrap/bootstrap-modal.js"></script>
     <script>
       (function($){
-
+          $(document).ready(function(){
+            });
         })(jQuery);
     </script>
 

@@ -1,6 +1,6 @@
 import os
 import webapp2
-from model import RedirectRoutes , UniqueConstraintViolation
+from model import RedirectRoutes
 from google.appengine.ext.webapp import template
 
 
@@ -10,7 +10,8 @@ class IndexHandler(webapp2.RequestHandler):
         print self.request.get('key')
 
     def post(self):
-        
+        from google.appengine.ext.db import BadValueError
+        from model import UniqueConstraintViolation
         try:
             RedirectRoutes.create(
             target_key = self.request.get('target_key'),
@@ -19,6 +20,8 @@ class IndexHandler(webapp2.RequestHandler):
             self.redirect('/')
         except UniqueConstraintViolation:
             self.response.out.write("The target Key already exists , Please go back and try a different key")
+        except BadValueError:
+            self.response.out.write("Woah there ! That was not a url , Go back and enter a proper one .")
 
 
     def get(self):

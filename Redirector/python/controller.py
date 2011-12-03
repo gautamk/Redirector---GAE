@@ -13,7 +13,7 @@ class RedirectHandler(webapp2.RequestHandler):
             logging.info("Redirected to :"+str(r.target_url)+"\n"+str(self.request.headers))
             self.redirect(str(r.target_url))
         else:
-            self.error(404)
+            self.error(404);
 
 class DeleteHandler(webapp2.RequestHandler):
     def post(self):
